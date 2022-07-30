@@ -1,10 +1,7 @@
 const express = require("express");
 const routes = require("./routes");
 const mongoConnection = require("./config/connection");
-const { MongoClient } = require("mongodb");
-const userModel = require("./models/user");
 const path = require("path");
-const generateApiKey = require("./utils/generateKey");
 const dotenv = require("dotenv");
 
 dotenv.config();
