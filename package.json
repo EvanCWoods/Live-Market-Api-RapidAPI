@@ -1,25 +1,27 @@
 {
-    "name": "final-project",
-    "version": "1.0.0",
-    "description": "",
-    "main": "backend/server.js",
-    "scripts": {
-        "start": "node backend/server.js",
-        "develop": "concurrently \"cd backend && npm run start\" \"cd client && npm start\"",
-        "install": "cd backend && npm i && cd ../client && npm i",
-        "seed": "cd backend && npm run seed",
-        "build": "cd client && npm run build"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "concurrently": "^5.1.0"
-    },
-    "dependencies": {
-        "body-parser": "^1.20.0",
-        "cookie-parser": "^1.4.6",
-        "react-icons": "^4.4.0",
-        "stripe": "^9.2.0"
-    }
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.3.2",
+    "nodemon": "^2.0.16",
+    "stripe": "^9.2.0"
+  }
 }
