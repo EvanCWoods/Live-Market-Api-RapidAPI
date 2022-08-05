@@ -1,6 +1,123 @@
 const router = require("express").Router();
-const data = require("./data.js");
+const { MongoClient } = require("mongodb");
+const dotenv = require("dotenv");
 
-router.use("/data", data);
+dotenv.config();
+
+router.get("/all/btc", async (req, res) => {
+  try {
+    const client = new MongoClient(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+    });
+    await client.connect();
+
+    const cursor = await client
+      .db("algorithm")
+      .collection("bitcoin")
+      .find()
+      .sort({ Timestamp: 1 });
+    const results = await cursor.toArray();
+    res.json(results);
+  } catch (err) {
+    res.send("something went wrong");
+  }
+});
+
+router.get("/current/btc", async (req, res) => {
+  try {
+    const client = new MongoClient(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+    });
+    await client.connect();
+    const cursor = await client
+      .db("algorithm")
+      .collection("bitcoin")
+      .find()
+      .sort({ Timestamp: 1 });
+    let results = await cursor.toArray();
+    results = results[results.length - 1];
+    res.json(results);
+  } catch (err) {
+    res.send("something went wrong");
+  }
+});
+
+router.get("/all/eth", async (req, res) => {
+  try {
+    const client = new MongoClient(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+    });
+    await client.connect();
+
+    const cursor = await client
+      .db("algorithm")
+      .collection("ethereum")
+      .find()
+      .sort({ Timestamp: 1 });
+    const results = await cursor.toArray();
+    res.json(results);
+  } catch {
+    res.send("something went wrong");
+  }
+});
+
+router.get("/current/eth", async (req, res) => {
+  try {
+    const client = new MongoClient(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+    });
+    await client.connect();
+
+    const cursor = await client
+      .db("algorithm")
+      .collection("ethereum")
+      .find()
+      .sort({ Timestamp: 1 });
+    let results = await cursor.toArray();
+    results = results[results.length - 1];
+    res.json(results);
+  } catch {
+    res.send("something went wrong");
+  }
+});
+
+module.exports = router;
+router.get("/all/bnb", async (req, res) => {
+  try {
+    const client = new MongoClient(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+    });
+    await client.connect();
+
+    const cursor = await client
+      .db("algorithm")
+      .collection("binance")
+      .find()
+      .sort({ Timestamp: 1 });
+    const results = await cursor.toArray();
+    res.json(results);
+  } catch {
+    res.send("something went wrong");
+  }
+});
+
+router.get("/current/bnb", async (req, res) => {
+  try {
+    const client = new MongoClient(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+    });
+    await client.connect();
+    const cursor = await client
+      .db("algorithm")
+      .collection("binance")
+      .find()
+      .sort({ Timestamp: 1 });
+    let results = await cursor.toArray();
+    results = results[results.length - 1];
+    res.json(results);
+  } catch {
+    res.send("something went wrong");
+  }
+});
 
 module.exports = router;
